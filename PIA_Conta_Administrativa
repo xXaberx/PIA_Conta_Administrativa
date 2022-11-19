@@ -1,0 +1,1427 @@
+import openpyxl
+libro = openpyxl.Workbook()
+hoja = libro["Sheet"]
+hoja.title = "Redaccion"
+hoja2=libro.create_sheet(index=2, title="Procedimiento")
+
+#Balance
+print("Si una de las cuentas no aplica solo ponga 0")
+#Acttivos
+efectivo=100000
+clientes=80000
+deudores_diversos=35000
+InMateriales=45000
+FuncionariosEmpleados=10500
+InProdTer=135000
+activo_circulante= efectivo+clientes+deudores_diversos+InMateriales+FuncionariosEmpleados+InProdTer
+
+
+Terreno=905000
+plantaEquipo=1500000
+depresiacionAcom=-650000
+
+activo_no_circulante=Terreno+plantaEquipo+depresiacionAcom
+
+
+Total_activo=activo_circulante+activo_no_circulante
+
+
+
+#Pasivos
+
+proveedores=33500
+documentosxpagar=95000
+ISR=50000
+pasivosCorto=proveedores+documentosxpagar+ISR
+
+prestamos_bancarios=120000
+
+pasivosLargo=prestamos_bancarios
+
+Totalpasivos=pasivosCorto+pasivosLargo
+
+
+#capital contable
+capitalContri=1500000
+capitalGanado=362000
+Total_capital=capitalContri+capitalGanado
+
+cuadra=Total_activo==Total_capital+Totalpasivos
+
+if cuadra==True:
+    hoja["A1"].value = "Balance general del 31/12/2021"
+    hoja["A2"].value = "Activos"
+    hoja["A3"].value = "efectivo"
+    hoja["A4"].value = "clientes"
+    hoja["A5"].value = "deudores diversos"
+    hoja["A6"].value = "Inventario Materiales"
+    hoja["A7"].value = "Funcionarios y Empleados"
+    hoja["A8"].value = "Inventario de productos terminados"
+    hoja["A9"].value = "Total de activo circulante"
+    
+    hoja["A11"].value = "Terreno"
+    hoja["A12"].value = "Planta y equipo"
+    hoja["A13"].value = "depresiacion Acomulada"
+    hoja["A14"].value = "Total de activo no circulante"
+    hoja["A15"].value = "Total de activos"
+
+    hoja["B3"].value = efectivo
+    hoja["B4"].value = clientes
+    hoja["B5"].value = deudores_diversos
+    hoja["B6"].value = InMateriales
+    hoja["B7"].value = FuncionariosEmpleados
+    hoja["B8"].value = InProdTer
+    hoja["B9"].value = activo_circulante
+    
+    hoja["B11"].value = Terreno
+    hoja["B12"].value = plantaEquipo
+    hoja["B13"].value = depresiacionAcom
+    hoja["B14"].value = activo_no_circulante
+    hoja["B15"].value = Total_activo
+    
+
+    hoja["C2"].value = "Pasivos"
+    hoja["C3"].value = "Proveedores"
+    hoja["C4"].value = "documentos por pagar"
+    hoja["C5"].value = "ISR por pagar"
+    hoja["C6"].value = "Total de pasivos a corto plazo "
+    
+    hoja["C8"].value ="prestamos bancarios"
+    hoja["C9"].value ="Total de pasivos a largo plazo"
+    
+    hoja["D3"].value = proveedores
+    hoja["D4"].value = documentosxpagar
+    hoja["D5"].value = ISR
+    hoja["D6"].value = pasivosCorto
+    
+    hoja["D8"].value = prestamos_bancarios
+    hoja["D9"].value = pasivosLargo
+    
+    hoja["C12"].value ="Capital Contable"
+    hoja["C13"].value ="Capital Contribuido"
+    hoja["C14"].value ="Capital Ganado"
+    hoja["C15"].value ="Capital Contable Total"
+    hoja["C16"].value ="Capital + Pasivo"
+    
+    hoja["D13"].value =capitalContri
+    hoja["D14"].value =capitalGanado  
+    hoja["D15"].value =Total_capital
+    hoja["D16"].value = Total_capital+Totalpasivos
+    libro.save("MiExcelDesdePython.xlsx")
+    
+    #Requerimiento de materiales
+    producto1=input("ingrese el nombre del producto")
+    MPA1=float(input("¿cuanto material de este tipo necesitara para el producto1?"))
+    MPB1=float(input("¿cuanto material de este tipo necesitara para el producto1?"))
+    MPC1=float(input("¿cuanto material de este tipo necesitara para el producto1?"))
+
+    producto2=input("ingrese el nombre del producto")
+    MPA2=float(input("¿cuanto material de este tipo necesitara para el producto2?"))
+    MPB2=float(input("¿cuanto material de este tipo necesitara para el producto2?"))
+    MPC2=float(input("¿cuanto material de este tipo necesitara para el producto2?"))
+
+    producto3=input("ingrese el nombre del producto")
+    MPA3=float(input("¿cuanto material de este tipo necesitara para el producto3?"))
+    MPB3=float(input("¿cuanto material de este tipo necesitara para el producto3?"))
+    MPC3=float(input("¿cuanto material de este tipo necesitara para el producto3?"))
+
+    MO1=float(input("¿Cuanto costara la mano de obra en este producto"))
+    MO2=float(input("¿Cuanto costara la mano de obra en este producto"))
+    MO3=float(input("¿Cuanto costara la mano de obra en este producto"))
+    
+    MOS1=float(input("¿Cuanto costara la mano de obra en el primer semestre"))
+    MOS2=float(input("¿Cuanto costara la mano de obra en el segundo semestre"))
+    
+    
+    hoja["A21"].value = "Requerimiento de materiales"
+    hoja["A23"].value = "Material A"
+    hoja["A24"].value = "Material B"
+    hoja["A25"].value = "Material C"
+    hoja["A26"].value = "Horas de mano de obra"
+    
+    hoja["C22"].value = producto1
+    hoja["D22"].value = producto2
+    hoja["E22"].value = producto3
+    
+    hoja["C23"].value = MPA1    
+    hoja["D23"].value = MPA2    
+    hoja["E23"].value = MPA3
+    
+    hoja["C24"].value = MPB1    
+    hoja["D24"].value = MPB2    
+    hoja["E24"].value = MPB3
+    
+    hoja["C25"].value = MPC1    
+    hoja["D25"].value = MPC2    
+    hoja["E25"].value = MPC3
+    
+    hoja["C26"].value = MO1   
+    hoja["D26"].value = MO2   
+    hoja["E26"].value = MO3  
+    libro.save("MiExcelDesdePython.xlsx")
+    
+    materia_prima_a = []
+    materia_prima_b = []
+    materia_prima_c = []
+    producto_1 = []
+    producto_2 = []
+    producto_3 = []
+
+    #Valor de inventarios 1er y 2do semestre
+    def informacion_inventarios():
+        global Inv_inicial_1er_semestre, Inv_inicial_2do_semestre
+        Inv_inicial_1er_semestre = float(input("Ingrese el valor del inventario inicial del primer semestre: \n"))
+        Inv_inicial_2do_semestre = float(input("Ingrese el valor del inventario final del segundo semestre: \n"))
+
+    #Costos primer y 2do semestre
+    def informacion_inventarios_costos():
+        global nombre_producto, Costo_1er_semestre, Costo_2do_semestre
+        Costo_1er_semestre = float(input("Ingrese el costo del primer semestre: \n"))
+        Costo_2do_semestre = float(input("Ingrese el costo del segundo semestre: \n"))
+
+    #Materia prima A
+    print("**** Materia prima A ****")
+    informacion_inventarios()
+    informacion_inventarios_costos()
+    materia_prima_a = [Inv_inicial_1er_semestre, Inv_inicial_2do_semestre, Costo_1er_semestre, Costo_2do_semestre]
+    print(f"Materia prima A: {materia_prima_a}")
+
+    #Materia prima B
+    print("**** Materia prima B ****")
+    informacion_inventarios()
+    informacion_inventarios_costos()
+    materia_prima_b = [Inv_inicial_1er_semestre, Inv_inicial_2do_semestre, Costo_1er_semestre, Costo_2do_semestre]
+    print(f"Materia prima B {materia_prima_b}")
+
+    #Materia prima c
+    print("**** Materia prima C ****")
+    informacion_inventarios()
+    informacion_inventarios_costos()
+    materia_prima_c = [Inv_inicial_1er_semestre, Inv_inicial_2do_semestre, Costo_1er_semestre, Costo_2do_semestre]
+    print(f"Materia prima C {materia_prima_c}")
+
+    #Producto 1
+    print("**** Producto 1 ****")
+    informacion_inventarios()
+    producto_1 = [Inv_inicial_1er_semestre, Inv_inicial_2do_semestre]
+    print(f"Producto 1: {producto1}")
+
+    #Producto 2
+    print("**** Producto 2 ****")
+    informacion_inventarios()
+    producto_2 = [Inv_inicial_1er_semestre, Inv_inicial_2do_semestre]
+    print(f"Producto 2: {producto_2}")
+
+    #Producto 3
+    print("**** Producto 3 ****")
+    informacion_inventarios()
+    producto_3 = [Inv_inicial_1er_semestre, Inv_inicial_2do_semestre]
+
+    print(f"""
+        *** Informacion de inventarios***
+        Materia prima A: {materia_prima_a}
+        Materia prima B {materia_prima_b}
+        Materia prima C {materia_prima_c}
+        {producto1}: {producto_1}
+        {producto2}: {producto_2}
+        {producto3}: {producto_3}""")
+
+
+    #Informacion columna 1
+    hoja["A29"].value = "Informacion de inventarios"
+    hoja["A30"].value = "Concepto"
+    hoja["C30"].value = "Inventario inicial 1er semestre"
+    hoja["D30"].value = "Inventario final 2do semestre"
+    hoja["E30"].value = "Costo 1er semestre"
+    hoja["F30"].value = "Costo 2do semestre"
+    hoja["A31"].value = "Materia prima A"
+    hoja["A32"].value = "Materia prima B"
+    hoja["A33"].value = "Materia prima C"
+    hoja["A34"].value = producto1
+    hoja["A35"].value = producto2
+    hoja["A36"].value = producto3
+
+    #Inventario final 1er semestre
+    hoja["C31"].value = materia_prima_a[0]
+    hoja["C32"].value = materia_prima_b[0]
+    hoja["C33"].value = materia_prima_c[0]
+    hoja["C34"].value = producto_1[0]
+    hoja["C35"].value = producto_2[0]
+    hoja["C36"].value = producto_3[0]
+
+    #Inventario final segundo semestre
+    hoja["D31"].value = materia_prima_a[1]
+    hoja["D32"].value = materia_prima_b[1]
+    hoja["D33"].value = materia_prima_c[1]
+    hoja["D34"].value = producto_1[1]
+    hoja["D35"].value = producto_2[1]
+    hoja["D36"].value = producto_3[1]
+
+    #Costo primer semestre
+    hoja["E31"].value = materia_prima_a[2]
+    hoja["E32"].value = materia_prima_b[2]
+    hoja["E33"].value = materia_prima_c[2]
+
+    #Costo segundo semestre
+    hoja["F31"].value = materia_prima_a[3]
+    hoja["F32"].value = materia_prima_b[3]
+    hoja["F33"].value = materia_prima_c[3]
+
+    libro.save("MiExcelDesdePython.xlsx")
+        
+    articulo_1 = []
+    articulo_2 = []
+    articulo_3 = []
+
+    def info_producto():
+        global precio_producto_semestre_1, precio_producto_semestre_2, ventas_planeadas_1, ventas_planeadas_2
+        precio_producto_semestre_1 = float(input(f"Ingrese el precio de venta del primer semestre para este producto"))
+        precio_producto_semestre_2 = float(input(f"Ingrese el precio de venta del segundo semestre para este producto"))
+        ventas_planeadas_1 = float(input(f"Ingrese las ventas planeadas del primer semestre para este producto"))
+        ventas_planeadas_2 = float(input(f"Ingrese las ventas planeadas del segundo semestre para este producto"))
+
+    print(f"*** Producto 1: {producto1} ***")
+    info_producto()
+    articulo_1 = [precio_producto_semestre_1, precio_producto_semestre_2, ventas_planeadas_1, ventas_planeadas_2]
+    print(f"Informacion del articulo 1: ({producto1}): ")
+    print(articulo_1)
+    print(f"*** Producto 2: {producto2} ***")
+    info_producto()
+    articulo_2 = [precio_producto_semestre_1, precio_producto_semestre_2, ventas_planeadas_1, ventas_planeadas_2]
+    print(f"Informacion del articulo 2: ({producto_2}): ")
+    print(articulo_2)
+
+    print(f"*** Producto 3: {producto3} ***")
+    info_producto()
+    articulo_3 = [precio_producto_semestre_1, precio_producto_semestre_2, ventas_planeadas_1, ventas_planeadas_2]
+    print(articulo_3)
+
+    print(f"""***Informacion de productos***
+        {producto1}: {articulo_1}
+        {producto2}: {articulo_2}
+        {producto3}: {articulo_3}""")
+
+
+    #Informacion primer columna
+    hoja["A39"].value = "Productos"
+    hoja["A41"].value = "Precio de venta Primer semestre"
+    hoja["A42"].value = "Precio de venta Segundo semestre"
+    hoja["A43"].value = "Ventas planeadas Primer semestre"
+    hoja["A44"].value = "Ventas planeadas Segundo semestre"
+    
+
+    #Informacion primer producto
+    hoja["C40"].value = producto1
+    hoja["C41"].value = articulo_1[0]
+    hoja["C42"].value = articulo_1[1]
+    hoja["C43"].value = articulo_1[2]
+    hoja["C44"].value = articulo_1[3]
+
+    #Informacion segundo producto
+    hoja["D40"].value = producto2
+    hoja["D41"].value = articulo_2[0]
+    hoja["D42"].value = articulo_2[1]
+    hoja["D43"].value = articulo_2[2]
+    hoja["D44"].value = articulo_2[3]
+
+    #Informacion tercer producto
+    hoja["E40"].value = producto3
+    hoja["E41"].value = articulo_3[0]
+    hoja["E42"].value = articulo_3[1]
+    hoja["E43"].value = articulo_3[2]
+    hoja["E44"].value = articulo_3[3]
+
+    libro.save("MiExcelDesdePython.xlsx")
+    
+    
+    #Gastos de adiministracion y ventas
+    depreciacion= float(input("Ingresa depreciacion: "))
+    SueldosYSalarios= float(input("Ingresa SueldosYSalarios: "))
+    Comisiones= float(input("Ingresa comisiones: "))
+    Varios1= float(input("Ingresa Varios1erSemestre: "))
+    Varios2= float(input("Ingresa Varios2doSemestre: "))
+    InteresesPorPrestamo= float(input("Ingresa InteresesPorPrestamo: "))
+        
+    hoja["A46"].value="Gastos de administracion y ventas"
+    hoja["A47"].value="Depreciacion"
+    hoja["B47"].value= depreciacion 
+    hoja["A48"].value="Sueldos y salarios"
+    hoja["B48"].value= SueldosYSalarios
+    hoja["A49"].value="Comisiones"
+    hoja["B49"].value= Comisiones
+    hoja["A50"].value="Varios 1er Semestre"
+    hoja["B50"].value= Varios1
+    hoja["A51"].value="Varios 2do semestre"
+    hoja["B51"].value= Varios2
+    hoja["A52"].value="Interes por prestamo"
+    hoja["B52"].value= InteresesPorPrestamo
+    
+    # Gastos de fabricacion indirectos
+    Depreciacion= float(input("Ingrese Depreciacion: "))
+    Seguros= float(input("Ingrese Seguros: "))
+    Mantenimiento= float(input("Ingrese Mantenimiento1: "))
+    Mantenimiento2= float(input("Ingrese Mantenimiento2: "))
+    Energeticos1= float(input("Ingrese Energeticos1: "))
+    Energeticos2= float(input("Ingrese Energeticos2: "))
+    Varios= float(input("Ingrese Varios: "))
+    
+    hoja["A54"].value="Gastos de fabricacion indirectos"
+    hoja["A55"].value="Depreciacion"
+    hoja["B55"].value= Depreciacion
+    hoja["A56"].value="Seguros"
+    hoja["B56"].value= Seguros
+    hoja["A57"].value="Mantenimiento 1"
+    hoja["B57"].value= Mantenimiento
+    hoja["A58"].value="Mantenimiento 2"
+    hoja["B58"].value= Mantenimiento2
+    hoja["A59"].value="Ernergeticos 1"
+    hoja["B59"].value= Energeticos1
+    hoja["A60"].value="Energeticos 2"
+    hoja["B60"].value= Energeticos2
+    hoja["A61"].value="Varios"
+    hoja["B61"].value=Varios 
+    
+    
+    #Aqui ya empieza lo de procedimiento
+    #Tabla1
+    hoja2["A1"].value = '"Presupuesto Maestro"'
+    hoja2["A2"].value = "|:Presupuesto de operacion"
+    hoja2["A2"].value = "1:Presupuesto de ventas"
+    hoja2["B5"].value = "Primer semestre"
+    hoja2["C5"].value = "Segundo semestre"
+    hoja2["D5"].value = "20XX"
+    hoja2["A6"].value = producto1
+    hoja2["A7"].value = "Unidades a vender"
+    hoja2["A8"].value = "Precio de Venta"
+    hoja2["A9"].value = "Importe de Venta"
+    
+    hoja2["A11"].value = producto2
+    hoja2["A12"].value = "Unidades a vender"
+    hoja2["A13"].value = "Precio de Venta"
+    hoja2["A14"].value = "Importe de Venta"
+    
+    hoja2["A16"].value = producto3
+    hoja2["A17"].value = "Unidades a vender"
+    hoja2["A18"].value = "Precio de Venta"
+    hoja2["A19"].value = "Importe de Venta"
+    hoja2["A20"].value = "Total de ventas por semestre"
+    
+    #Tabla2
+    hoja2["A22"].value= "2. Determinación del saldo de Clientes y Flujo de Entradas"
+    hoja2["A23"].value= "Descripcion"
+    hoja2["B23"].value= "Importe"
+    hoja2["C23"].value= "Total"
+    hoja2["A24"].value= "Saldo de clientes 31-Dic-20XX"
+    hoja2["A25"].value= "Ventas"
+    hoja2["A26"].value= "Total de clientes"
+    hoja2["A28"].value= "Entradas en efectivo: "
+    hoja2["A29"].value= "Por cobranza el año pasado"
+    hoja2["A30"].value= "Por cobranza este año"
+    hoja2["A31"].value= "Total de entradas en el año"
+    hoja2["A33"].value= "Saldo clientes actual"
+    
+    #Tabla3
+    hoja2["A37"].value= "3. Presupuesto de produccion"
+    hoja2["B38"].value= "Semestre 1"
+    hoja2["C38"].value= "Semestre 2"  
+    hoja2["D38"].value= "Total del año" 
+    hoja2["A39"].value= producto1
+    hoja2["A40"].value= "Unidades a vender"
+    hoja2["A41"].value= "Inventario final"
+    hoja2["A42"].value= "Total de unidades"
+    hoja2["A43"].value= "Inventario inicial"
+    hoja2["A44"].value= "Unidades a producir"
+    
+    hoja2["A46"].value= producto2
+    hoja2["A47"].value= "Unidades a vender"
+    hoja2["A48"].value= "Inventario final"
+    hoja2["A49"].value= "Total de unidades"
+    hoja2["A50"].value= "Inventario inicial"
+    hoja2["A51"].value= "Unidades a producir"
+    
+    hoja2["A53"].value= producto3
+    hoja2["A54"].value= "Unidades a vender"
+    hoja2["A55"].value= "Inventario final"
+    hoja2["A56"].value= "Total de unidades"
+    hoja2["A57"].value= "Inventario inicial"
+    hoja2["A58"].value= "Unidades a producir"
+    
+    #Tabla 4    
+    hoja2["A64"].value = "4. Presupuesto de requereimiento de materiales"
+    hoja2["B65"].value = "1er semestre"
+    hoja2["C65"].value = "2er semestre"
+    hoja2["D65"].value = "total anual"
+
+    #Producto 1
+    hoja2["A66"].value = f"Producto 1: {producto1}"
+    hoja2["A67"].value = "Unidades a producir"
+    hoja2["A69"].value = "Material A"
+    hoja2["A70"].value = "Requerimiento de material"
+    hoja2["A71"].value = "Total de material A requerido"
+    hoja2["A72"].value = "Material B"
+    hoja2["A73"].value = "Requerimiento de material"
+    hoja2["A74"].value = "Total de material B requerido"
+    hoja2["A75"].value = "Material C"
+    hoja2["A76"].value = "Requerimiento de material"
+    hoja2["A77"].value = "Total de material C requerido"
+
+    #Producto 2
+    hoja2["A79"].value = f"Producto 2: {producto2}"
+    hoja2["A80"].value = "Unidades a producir"
+    hoja2["A82"].value = "Material A"
+    hoja2["A83"].value = "Requerimiento de material"
+    hoja2["A84"].value = "Total de material A requerido"
+    hoja2["A85"].value = "Material B"
+    hoja2["A86"].value = "Requerimiento de material"
+    hoja2["A87"].value = "Total de material B requerido"
+    hoja2["A88"].value = "Material C"
+    hoja2["A89"].value = "Requerimiento de material"
+    hoja2["A90"].value = "Total de material C requerido"
+
+    #Producto 3
+    hoja2["A92"].value = f"Producto 3: {producto3}"
+    hoja2["A93"].value = "Unidades a producir"
+    hoja2["A95"].value = "Material A"
+    hoja2["A96"].value = "Requerimiento de material"
+    hoja2["A97"].value = "Total de material A requerido"
+    hoja2["A98"].value = "Material B"
+    hoja2["A99"].value = "Requerimiento de material"
+    hoja2["A100"].value = "Total de material B requerido"
+    hoja2["A101"].value = "Material C"
+    hoja2["A102"].value = "Requerimiento de material"
+    hoja2["A103"].value = "Total de material C requerido"
+
+    hoja2["A106"].value = "Total de requerimientos"
+    hoja2["A107"].value = "Material A"
+    hoja2["A108"].value = "Material B"
+    hoja2["A109"].value = "Material C"
+    
+    #Tabla5
+    #Encabezado
+    hoja2["A112"].value = "5. Presupuesto de compra de materiales"
+    hoja2["B113"].value = "1er semestre"
+    hoja2["C113"].value = "2do semestre"
+    hoja2["D113"].value = "Total anual"
+
+    #columna informacion Material A
+    hoja2["A114"].value = "Material A"
+    hoja2["A115"].value = "Requerimiento de materiales"
+    hoja2["A116"].value = "(+) Inventario Final"
+    hoja2["A117"].value = "Total materiales"
+    hoja2["A118"].value = "(-) Inventario inicial"
+    hoja2["A119"].value = "Material a comprar"
+    hoja2["A120"].value = "Precio de compra"
+    hoja2["A121"].value = "Total de material A en $"
+
+    #columna informacion Material B
+    hoja2["A123"].value = "Material B"
+    hoja2["A124"].value = "Requerimiento de materiales"
+    hoja2["A125"].value = "(+)Inventario final"
+    hoja2["A126"].value = "Total materiales"
+    hoja2["A127"].value = "(-) Inventario inicial"
+    hoja2["A128"].value = "Material a comprar"
+    hoja2["A129"].value = "Precio de compra"
+    hoja2["A130"].value = "Total de material B en $"
+
+    #columna informacion Material C
+    hoja2["A132"].value = "Material C"
+    hoja2["A133"].value = "Requerimiento de materiales"
+    hoja2["A134"].value = "(+)Inventario final"
+    hoja2["A135"].value = "Total materiales"
+    hoja2["A136"].value = "(-) Inventario inicial"
+    hoja2["A137"].value = "Material a comprar"
+    hoja2["A138"].value = "Precio de compra"
+    hoja2["A139"].value = "Total de material C en $"
+
+    #Total de compras
+    hoja2["A141"].value = "Compras totales:"
+    
+    #Tabla 6
+    #Encabezado
+    hoja2["A144"].value = "6. Determinacion del saldo de proveedores y flujo de salidas"
+    hoja2["A145"].value = "Descripcion"
+    hoja2["B145"].value = "Importe"
+    hoja2["C145"].value = "Total"
+
+    #Informacion columna C
+
+    hoja2["A146"].value = "Saldo de proveedores año anterior"
+    hoja2["A147"].value = "Compras 2016"
+    hoja2["A148"].value = "Total de proveedores año actual"
+
+    hoja2["A150"].value = "Salidas de efectivo:"
+    hoja2["A151"].value = "Por proveedores del año anterior"
+    hoja2["A152"].value = "Por proveedores del año actual"
+    hoja2["A153"].value = "Total de salidas año actual"
+
+    hoja2["A155"].value = "Saldo de proveedores del año actual"
+        
+    
+    #tabla 7
+    hoja2["A158"].value="7. Presupuesto de obra de mano directa"
+    hoja2["A160"].value=producto1
+    hoja2["A161"].value="Unidades a producir"
+    hoja2["A162"].value="Horas requeridas por unidad"
+    hoja2["A163"].value="Total de horas requeridas"
+    hoja2["A164"].value="Cuota por hora"
+    hoja2["A165"].value="Importe de M.O.D"
+    hoja2["A167"].value=producto2
+    hoja2["A168"].value="Unidades a producir"
+    hoja2["A169"].value="Horas requeridas por unidad"
+    hoja2["A170"].value="Total de horas requeridas"
+    hoja2["A171"].value="Cuota por hora"
+    hoja2["A172"].value="Importe de M.O.D"
+    hoja2["A174"].value=producto3
+    hoja2["A175"].value="Unidades a producir"
+    hoja2["A176"].value="Horas requeridas por unidad"
+    hoja2["A177"].value="Total de horas requeridas"
+    hoja2["A178"].value="Cuota por hora"
+    hoja2["A179"].value="Importe de M.O.D"
+    hoja2["A181"].value="Total de horas requeridas por semestre"
+    hoja2["A182"].value="Total de M.O.D por semestre"
+    hoja2["B159"].value="1er semestre"
+    hoja2["C159"].value="2do semestre"
+    hoja2["D159"].value="Total"
+    
+
+
+
+    #Tabla 8
+    hoja2["A186"].value="8. Presupuesto de Gastos Indirectos de Fabricación"
+    hoja2["A188"].value="Depreciación"
+    hoja2["A189"].value="Seguros"
+    hoja2["A190"].value="Mantenimiento"
+    hoja2["A191"].value="Energeticos"
+    hoja2["A192"].value="Varios"
+    hoja2["A193"].value="Total G.I.F. por semestre"
+    hoja2["A195"].value="Coeficiente para determinar el costo por hora de Gastos Indirectos de Fabricación"
+    hoja2["A196"].value="Total de G.I.F."
+    hoja2["A197"].value="(/) Total horas M.O.D. Anual"
+    hoja2["A198"].value="(=) Costo por Hora de G.I.F."
+    hoja2["B187"].value="1er semestre"
+    hoja2["C187"].value="2do semestre"
+    hoja2["D187"].value="Total"
+    
+    #Tabla 9
+    hoja2["A201"].value="9. Presupuesto de Gastos de Operación"
+    hoja2["A203"].value="Depreciacion"
+    hoja2["A204"].value="Sueldos y Salarios"
+    hoja2["A205"].value="Comisiones"
+    hoja2["A206"].value="Varios"
+    hoja2["A207"].value="Intereses del Prestamo"
+    hoja2["A208"].value="Total de Gastos de Operación:"
+    hoja2["B159"].value="1er semestre"
+    hoja2["C159"].value="2do semestre"
+    hoja2["D159"].value="Total"
+    hoja2["B202"].value="1er semestre"
+    hoja2["C202"].value="2do semestre"
+    hoja2["D202"].value="Total"
+    
+    #Tabla10
+    hoja2["A211"].value="10. Determinacion del costo unitario."
+
+    hoja2["A212"].value="Descripcion."
+    hoja2["B212"].value="Producto CL."
+    hoja2["B213"].value="Costo."
+    hoja2["C213"].value="Cantidad."
+    hoja2["D213"].value="Costo Unitario."
+    hoja2["A214"].value="Material A."
+    hoja2["A215"].value="Material B."
+    hoja2["A216"].value="Material C."
+    hoja2["A217"].value="Mano de obra."
+    hoja2["A218"].value="Gastos Indirectos De Fabricacion"
+    hoja2["A219"].value="Costo Unitario."
+    hoja2["B221"].value="Producto CE."
+    hoja2["A222"].value="Descripcion."
+    hoja2["B222"].value="Costo."
+    hoja2["C222"].value="Cantidad."
+    hoja2["D222"].value="Costo Unitario."
+    hoja2["A223"].value="Material A."
+    hoja2["A224"].value="Material B."
+    hoja2["A225"].value="Material C."
+    hoja2["A226"].value="Manos De Obra."
+    hoja2["A227"].value="Gastos Indirectos De Fabricacion."
+    hoja2["A228"].value="Costo Unitario."
+    hoja2["B230"].value="Producto CR."
+    hoja2["A231"].value="Descripcion."
+    hoja2["B231"].value="Costo."
+    hoja2["C231"].value="Cantidad."
+    hoja2["D231"].value="Costo Unitario."
+    hoja2["A232"].value="Material A."
+    hoja2["A233"].value="Material B."
+    hoja2["A234"].value="Material C."
+    hoja2["A235"].value="Mano De Obra."
+    hoja2["A236"].value="Gastos Indirectos De Fabricacion."
+    hoja2["A237"].value="Costo UInitario."
+    
+    #tabla 11
+
+    hoja2["A240"].value="11. Valuacion de inventario finales."
+    hoja2["A241"].value="Inventario final de materiales."
+    hoja2["A242"].value="Descripcion."
+    hoja2["B242"].value="Unidades."
+    hoja2["C242"].value="Costo Unitario."
+    hoja2["D242"].value="Costo Total."
+    hoja2["A243"].value="Material A."
+    hoja2["A244"].value="Material B."
+    hoja2["A245"].value="Material C."
+    hoja2["A246"].value="Inventario Final De Materiales."
+    hoja2["A248"].value="Inventario Final De Producto Terminado."
+    hoja2["A249"].value="Descripcion."
+    hoja2["B249"].value="Unidades."
+    hoja2["C249"].value="Costo Unitario."
+    hoja2["D249"].value="Costo Total."
+    hoja2["A250"].value="Producto CL."
+    hoja2["A251"].value="Producto CE."
+    hoja2["A252"].value="Producto CR."
+    hoja2["A253"].value="Inventario Final De Producto Terminado"
+
+    #tabla II Presupuesto Financiero 
+    hoja2["A256"].value="II Presupuesto Financiero"
+    hoja2["A257"].value="Maquilados Regionales S.A De C.V"
+    hoja2["A258"].value="Estado De Costo De Produccion y Ventas."
+    hoja2["A259"].value="Presupuesto Del 1 de Enero al 31 de Diciembre del 2016."
+    hoja2["A261"].value="Saldo Inicial De Materiales"
+    hoja2["A262"].value="(+) Compras De Materiales"
+    hoja2["A263"].value="(=) Material Disponible"
+    hoja2["A264"].value="(-) Inventario Final de Materiales"
+    hoja2["A265"].value="(=) Materiales Utilizados"
+    hoja2["A266"].value="(+) Mano de Obra Directa"
+    hoja2["A267"].value="(+) Gastos de Fabricación Indirectos"
+    hoja2["A268"].value="(=) Costo de Producción"
+    hoja2["A269"].value="(+) Inventario Inicial de Productos Terminados"
+    hoja2["A270"].value="(=) Total de Producción Disponible"
+    hoja2["A271"].value="(-) Inventario Final de Productos Terminados"
+    hoja2["A272"].value="(=) Costo de Ventas"
+
+    #tabla III
+    hoja2["A275"].value="III. Maquilados Regionales S.A De C.V"
+    hoja2["A276"].value="Estado de Resultados"
+    hoja2["A277"].value="Presupuesto del 1 de Enero al 31 de Diciembre del 2016"
+    hoja2["A279"].value="Ventas"
+    hoja2["A280"].value="(-) Costo de Ventas"
+    hoja2["A281"].value="(=) Utilidad Bruta"
+    hoja2["A282"].value="(-) Gastos de Operación"
+    hoja2["A283"].value="(=) Utilidad de Operación"
+    hoja2["A284"].value="(-) ISR"
+    hoja2["A285"].value="(-) PTU"
+    hoja2["A286"].value="(=) Utilidad Neta"  
+      
+    #Tabla IV
+    hoja2["A289"].value="IV. MAQUILADOS REGIONALES S.A. DE C.V"
+    hoja2["A290"].value="Estado de Flujo de Efectivo"
+    hoja2["A291"].value="Presupuesto del 1 de Enero al 31 de Diciembre del 20XX"
+    hoja2["A292"].value="Saldo Inicial de Efectivo"
+    hoja2["A293"].value="Entradas:"
+    hoja2["A294"].value="Cobranza 2016"
+    hoja2["A295"].value="Cobranza 2015"
+    hoja2["A296"].value="Total de Entradas"
+    hoja2["A297"].value="Efectivo Disponible"
+    hoja2["A298"].value="Salidas:"
+    hoja2["A299"].value="Proveedores 2016"
+    hoja2["A300"].value="Proveedores 2015"
+    hoja2["A301"].value="Pago Mano de Obra Directa"
+    hoja2["A302"].value="Pago Gastos Indirectos de Fabricación"
+    hoja2["A303"].value="Pago de Gastos de Operación"
+    hoja2["A304"].value="Compra de Activo Fijo (Maquinaria)"
+    hoja2["A305"].value="Pago ISR 2015"
+    hoja2["A306"].value="Pago ISR 2016"
+    hoja2["A307"].value="Total de Salidas"
+    hoja2["A308"].value="Flujo de Efectivo Actual"
+    
+    #Tabla V
+    hoja2["A311"].value="V. MAQUILADOS REGIONALES S.A. DE C.V"
+    hoja2["A312"].value= "Balance General"
+    hoja2["A313"].value= "Presupuesto al 31 de Diciembre del 2016"    
+    hoja2["A315"].value="ACTIVO"
+    hoja2["A316"].value="Circulante"
+    hoja2["A317"].value="Efectivo"
+    hoja2["A318"].value="Clientes"
+    hoja2["A319"].value="Deudores Diversos"
+    hoja2["A320"].value="Inventario de materiales"
+    hoja2["A321"].value="Funcionarios y Empleados"
+    hoja2["A322"].value="Inventario de Producto Terminado"
+    hoja2["A323"].value="Total de Activos Circulantes:"        
+    hoja2["A325"].value="No Circulante"
+    hoja2["A326"].value="Terreno"
+    hoja2["A327"].value="Planta y Equipo"
+    hoja2["A328"].value="Depreciación Acumulada"
+    hoja2["A329"].value="Total Activos No Circulante"       
+    hoja2["A331"].value="ACTIVO TOTAL"        
+    hoja2["A333"].value="PASIVO"
+    hoja2["A334"].value="Corto Plazo"
+    hoja2["A335"].value="Proveedores"
+    hoja2["A336"].value="Documentos por Pagar"
+    hoja2["A337"].value="ISR por Pagar"
+    hoja2["A338"].value="PTU por Pagar"
+    hoja2["A339"].value="Total de Pasivo Corto Plazo:"        
+    hoja2["A341"].value="Largo Plazo"
+    hoja2["A342"].value="Préstamos Bancarios"
+    hoja2["A343"].value="Total de Pasivo Largo Plazo:"       
+    hoja2["A345"].value="PASIVO TOTAL"        
+    hoja2["A347"].value="CAPITAL CONTABLE"
+    hoja2["A348"].value="Capital Aportado"
+    hoja2["A349"].value="Capital Ganado"
+    hoja2["A350"].value="Utilidad del Ejercicio"
+    hoja2["A351"].value="Total de Capital Contable"        
+    hoja2["A353"].value="SUMA DE PASIVO Y CAPITAL"
+    
+    #Aqui se empiezan a llenar las cedulas
+    
+    #Cedula 1
+    hoja2["B7"].value=articulo_1[2]
+    hoja2["C7"].value=articulo_1[3]
+    hoja2["B8"].value=articulo_1[0]
+    hoja2["C8"].value=articulo_1[1]
+    hoja2["B9"].value = "=(B7*B8)"
+    hoja2["C9"].value = "=(C7*C8)"
+    hoja2["D9"].value ="=SUM(B9+C9)"
+    
+    
+    hoja2["B12"].value=articulo_2[2]
+    hoja2["C12"].value=articulo_2[3]
+    hoja2["B13"].value=articulo_2[0]
+    hoja2["C13"].value=articulo_2[1]
+    hoja2["B14"].value = "=(B12*B13)"
+    hoja2["C14"].value = "=(C12*C13)"
+    hoja2["D14"].value ="=SUM(B14+C14)"
+    
+    hoja2["B17"].value=articulo_3[2]
+    hoja2["C17"].value=articulo_3[3]
+    hoja2["B18"].value=articulo_3[0]
+    hoja2["C18"].value=articulo_3[1]
+    hoja2["B19"].value = "=(B17*B18)"
+    hoja2["C19"].value = "=(C17*C18)"
+    hoja2["D19"].value ="=SUM(B19+C19)"
+    hoja2["B20"].value = "=SUM(B9+B14+B19)"
+    hoja2["C20"].value = "=SUM(C9+C14+C19)"
+    hoja2["D20"].value = "=SUM(B20+C20)"
+    
+    
+    #Cedula 2
+    m=float(input("¿Cuanto porcentaje se dara a los clientes"))
+    hoja2["Z3012"].value = m
+    hoja2["C24"].value = clientes
+    hoja2["C25"].value = "=D20"
+    hoja2["C26"].value = "=SUM(C24+C25)"
+    hoja2["B29"].value = clientes
+    hoja2["B30"].value = "=(D20*Z3012)"
+    hoja2["C31"].value = "=SUM(B29+B30)"
+    hoja2["C33"].value = "=(C26-C31)"
+    
+    #Cedula 3
+    
+    #Producto 1
+    hoja2["B40"].value = "=B7"
+    hoja2["B41"].value = producto_1[0]
+    hoja2["B42"].value = "=SUM(B40+B41)"
+    hoja2["B43"].value = "=B41"
+    hoja2["B44"].value = "=(B42-B43)"
+    
+    hoja2["C40"].value = "=C7"
+    hoja2["C41"].value = producto_1[1]
+    hoja2["C42"].value = "=SUM(C40+C41)"
+    hoja2["C43"].value = "=B43"
+    hoja2["C44"].value = "=(C42-C43)"
+    
+    hoja2["D40"].value ="=SUM(B40+C40)"
+    hoja2["D41"].value ="=C41"
+    hoja2["D42"].value ="=SUM(D40+D41)"
+    hoja2["D43"].value ="=B43"
+    hoja2["D44"].value = "=(B44+C44)"
+
+    #Producto2
+    hoja2["B47"].value = "=B12"
+    hoja2["B48"].value = producto_2[0]
+    hoja2["B49"].value = "=SUM(B47+B48)"
+    hoja2["B50"].value = "=B48"
+    hoja2["B51"].value = "=(B49-B50)"
+    
+    hoja2["C47"].value = "=C12"
+    hoja2["C48"].value = producto_2[1]
+    hoja2["C49"].value = "=SUM(C47+C48)"
+    hoja2["C50"].value = "=B48"
+    hoja2["C51"].value = "=(C49-C50)"
+    
+    hoja2["D47"].value ="=SUM(B47+C47)"
+    hoja2["D48"].value ="=C48"
+    hoja2["D49"].value ="=SUM(D47+D48)"
+    hoja2["D50"].value ="=B48"
+    hoja2["D51"].value = "=(B51+C51)"
+    
+    #Producto3
+    hoja2["B54"].value = "=B17"
+    hoja2["B55"].value = producto_3[0]
+    hoja2["B56"].value = "=SUM(B54+B55)"
+    hoja2["B57"].value = "=B55"
+    hoja2["B58"].value = "=(B56-B57)"
+    
+    hoja2["C54"].value = "=C17"
+    hoja2["C55"].value = producto_3[1]
+    hoja2["C56"].value = "=SUM(C54+C55)"
+    hoja2["C57"].value = "=B55"
+    hoja2["C58"].value = "=(C56-C57)"
+    
+    hoja2["D54"].value ="=SUM(B54+C54)"
+    hoja2["D55"].value ="=C55"
+    hoja2["D56"].value ="=SUM(D54+D55)"
+    hoja2["D57"].value ="=B55"
+    hoja2["D58"].value = "=(B58+C58)"
+    
+    #Cedula4
+    
+    #Producto1
+    hoja2["B67"].value = "=B44"
+    hoja2["B70"].value = MPA1
+    hoja2["B71"].value = "=B67*B70"
+    
+    hoja2["B73"].value = MPB1
+    hoja2["B74"].value = "=B67*B73"
+    
+    hoja2["B76"].value = MPC1
+    hoja2["B77"].value = "=B67*B76"
+    
+    #--
+    hoja2["C67"].value = "=C44"
+    hoja2["C70"].value = MPA1
+    hoja2["C71"].value = "=C67*C70"
+    
+    hoja2["C73"].value = MPB1
+    hoja2["C74"].value = "=C67*C73"
+    
+    hoja2["C76"].value = MPC1
+    hoja2["C77"].value = "=C67*C76"
+    
+    #--
+    hoja2["D67"].value = "=SUM(B67+C67)"
+    hoja2["D70"].value = MPA1
+    hoja2["D71"].value = "=SUM(B71+C71)"
+    
+    hoja2["D73"].value = MPB1
+    hoja2["D74"].value = "=SUM(B74+C74)"
+    
+    hoja2["D76"].value = MPC1
+    hoja2["D77"].value = "=SUM(B77+C77)"
+    
+    #Producto2
+    hoja2["B80"].value = "=B51"
+    hoja2["B83"].value = MPA2
+    hoja2["B84"].value = "=B80*B83"
+    
+    hoja2["B86"].value = MPB2
+    hoja2["B87"].value = "=B80*B86"
+    
+    hoja2["B89"].value = MPC2
+    hoja2["B90"].value = "=B80*B89"
+    
+    #--
+    hoja2["C80"].value = "=C51"
+    hoja2["C83"].value = MPA2
+    hoja2["C84"].value = "=C80*C83"
+    
+    hoja2["C86"].value = MPB2
+    hoja2["C87"].value = "=C80*C86"
+    
+    hoja2["C89"].value = MPC2
+    hoja2["C90"].value = "=C80*C89"
+    
+    #--
+    hoja2["D80"].value = "=SUM(B80+C80)"
+    hoja2["D83"].value = MPA2
+    hoja2["D84"].value = "=SUM(B84+C84)"
+    
+    hoja2["D86"].value = MPB2
+    hoja2["D87"].value = "=SUM(B87+C87)"
+    
+    hoja2["D89"].value = MPC2
+    hoja2["D90"].value = "=SUM(B90+C90)"
+    
+    #Producto3
+    hoja2["B93"].value = "=B58"
+    hoja2["B96"].value = MPA3
+    hoja2["B97"].value = "=B93*B96"
+    
+    hoja2["B99"].value = MPB3
+    hoja2["B100"].value = "=B93*B99"
+    
+    hoja2["B102"].value = MPC3
+    hoja2["B103"].value = "=B93*B102"
+    
+    #--
+    hoja2["C93"].value = "=C58"
+    hoja2["C96"].value = MPA3
+    hoja2["C97"].value = "=C93*C96"
+    
+    hoja2["C99"].value = MPB3
+    hoja2["C100"].value = "=C93*C99"
+    
+    hoja2["C102"].value = MPC3
+    hoja2["C103"].value = "=C93*C102"
+    
+    #--
+    hoja2["D93"].value = "=SUM(B93+C93)"
+    hoja2["D96"].value = MPA3
+    hoja2["D97"].value = "=SUM(B97+C97)"
+    
+    hoja2["D99"].value = MPB3
+    hoja2["D100"].value = "=SUM(B100+C100)"
+    
+    hoja2["D102"].value = MPC3
+    hoja2["D103"].value = "=SUM(B103+C103)"
+    
+    #Media cedula
+    hoja2["B107"].value = "=SUM(B71+B84+B97)"
+    hoja2["C107"].value = "=SUM(C71+C84+C97)"
+    hoja2["D107"].value = "=SUM(D71+D84+D97)"
+    
+    hoja2["B108"].value = "=SUM(B74+B87+B100)"
+    hoja2["C108"].value = "=SUM(C74+C87+C100)"
+    hoja2["D108"].value = "=SUM(D74+D87+D100)"
+    
+    hoja2["B109"].value = "=SUM(B77+B90+B103)"
+    hoja2["C109"].value = "=SUM(C77+C90+C103)"
+    hoja2["D109"].value = "=SUM(D77+D90+D103)"
+    
+    #Cedula5
+    
+    #parteA
+    hoja2["B115"].value = "=B107"
+    hoja2["C115"].value = "=C107"
+    hoja2["D115"].value = "=D107"
+    hoja2["B118"].value = materia_prima_a[0]
+    hoja2["C118"].value = materia_prima_a[0]
+    hoja2["D118"].value = materia_prima_a[0]
+    hoja2["B116"].value = materia_prima_a[0]
+    hoja2["C116"].value = materia_prima_a[1]
+    hoja2["D116"].value = "=C116"
+    hoja2["B117"].value = "=SUM(B115+B116)"
+    hoja2["C117"].value = "=SUM(C115+C116)"
+    hoja2["D117"].value = "=SUM(D115+D116)"
+    hoja2["B119"].value = "=(B117-B118)"
+    hoja2["C119"].value = "=(C117-C118)"
+    hoja2["D119"].value = "=(D117-D118)"
+    hoja2["B120"].value = materia_prima_a[2]
+    hoja2["C120"].value = materia_prima_a[3]
+    hoja2["B121"].value = "=(B119*B120)"
+    hoja2["C121"].value = "=(C119*C120)"
+    hoja2["D121"].value = "=SUM(B121+C121)"
+    
+    #ParteB
+    hoja2["B124"].value = "=B108"
+    hoja2["C124"].value = "=C108"
+    hoja2["D124"].value = "=D108"
+    hoja2["B127"].value = materia_prima_b[0]
+    hoja2["C127"].value = materia_prima_b[0]
+    hoja2["D127"].value = materia_prima_b[0]   
+    hoja2["B125"].value = materia_prima_b[0]
+    hoja2["C125"].value = materia_prima_b[1]
+    hoja2["D125"].value = "=C125"    
+    hoja2["B126"].value = "=SUM(B124+B125)"
+    hoja2["C126"].value = "=SUM(C124+C125)"
+    hoja2["D126"].value = "=SUM(D124+D125)"    
+    hoja2["B128"].value = "=(B126-B127)"
+    hoja2["C128"].value = "=(C126-C127)"
+    hoja2["D128"].value = "=(D126-D127)"    
+    hoja2["B129"].value = materia_prima_b[2]
+    hoja2["C129"].value = materia_prima_b[3]
+    hoja2["B130"].value = "=(B128*B129)"    
+    hoja2["C130"].value = "=(C128*C129)"
+    hoja2["D130"].value = "=SUM(B130+C130)"
+    
+    #ParteC
+    hoja2["B133"].value = "=B109"
+    hoja2["C133"].value = "=C109"
+    hoja2["D133"].value = "=D109"   
+    hoja2["B136"].value = materia_prima_c[0]
+    hoja2["C136"].value = materia_prima_c[0]
+    hoja2["D136"].value = materia_prima_c[0]  
+    hoja2["B134"].value = materia_prima_c[0]
+    hoja2["C134"].value = materia_prima_c[1]
+    hoja2["D134"].value = "=C134" 
+    hoja2["B135"].value = "=SUM(B133+B134)"
+    hoja2["C135"].value = "=SUM(C133+C134)"
+    hoja2["D135"].value = "=SUM(D133+D134)"    
+    hoja2["B137"].value = "=(B135-B136)"
+    hoja2["C137"].value = "=(C135-C136)"
+    hoja2["D137"].value = "=(D135-D136)"   
+    hoja2["B138"].value = materia_prima_c[2]
+    hoja2["C138"].value = materia_prima_c[3]
+    
+    hoja2["B139"].value = "=(B137*B138)"    
+    hoja2["C139"].value = "=(C137*C138)"
+    hoja2["D139"].value = "=SUM(B139+C139)"
+    
+    hoja2["B141"].value = "=SUM(B121+B130+B139)"
+    hoja2["C141"].value = "=SUM(C121+C130+C139)"
+    hoja2["D141"].value = "=SUM(D121+D130+D139)"
+    
+    # Ejercicios Cedula 6
+    hoja2["C146"].value=proveedores
+    hoja2["C147"].value="=D141"
+    hoja2["C148"].value="=SUM(C146:C147)"
+    hoja2["B151"].value="=C146"
+    hoja2["B152"].value="=C147/2"
+    hoja2["B153"].value="=B151+B152"
+    hoja2["C153"].value="=SUM(B151:B152)"
+    hoja2["C155"].value="=C148-C153"
+    
+    # Ejercicios Cedula 7
+    #Producto 1
+    hoja2["B161"].value="=B44"
+    hoja2["C161"].value="=C44"
+    hoja2["D161"].value="=D44"
+    hoja2["B162"].value= MO1
+    hoja2["C162"].value= MO1
+    hoja2["D162"].value= MO1
+    hoja2["B163"].value="=B162*B161"
+    hoja2["C163"].value="=C161*C162"
+    hoja2["D163"].value="=D161*D162"
+    hoja2["B164"].value=MOS1
+    hoja2["C164"].value=MOS2
+    hoja2["B165"].value="=B163*B164"
+    hoja2["C165"].value="=C163*C164"
+    hoja2["D165"].value="=B165+C165"
+
+    #Producto 2
+
+    hoja2["B168"].value="=B51"
+    hoja2["C168"].value="=C51"
+    hoja2["D168"].value="=D51"
+
+    hoja2["B169"].value= MO2
+    hoja2["C169"].value= MO2
+    hoja2["D169"].value= MO2
+
+    hoja2["B170"].value="=B168*B169"
+    hoja2["C170"].value="=C168*C169"
+    hoja2["D170"].value="=D168*D169"
+
+    hoja2["B171"].value= MOS1
+    hoja2["C171"].value= MOS2
+
+    hoja2["B172"].value="=B170*B171"
+    hoja2["C172"].value="=C170*C171"
+    hoja2["D172"].value="=B172+C172"
+
+    # Producto 3
+
+    hoja2["B175"].value="=B58"
+    hoja2["C175"].value="=C58"
+    hoja2["D175"].value="=SUM(B175+C175)"
+
+    hoja2["B176"].value= MO3
+    hoja2["C176"].value= MO3
+    hoja2["D176"].value= MO3
+
+    hoja2["B177"].value="=B175*B176"
+    hoja2["C177"].value="=C175*C176"
+    hoja2["D177"].value="=D175*D176"
+
+    hoja2["B178"].value=MOS1
+    hoja2["C178"].value=MOS2
+
+    hoja2["B179"].value="=B177*B178"
+    hoja2["C179"].value="=C177*C178"
+    hoja2["D179"].value="=B179+C179"
+
+    hoja2["B181"].value="=B163+B170+B177"
+    hoja2["C181"].value="=C163+C170+C177"
+    hoja2["D181"].value="=D163+D170+D177"
+
+    hoja2["B183"].value="=B165+B172+B179"
+    hoja2["C183"].value="=C165+C172+C179"
+    hoja2["D183"].value="=D165+D172+D179"
+
+
+
+
+    # Ejercicios cedula 8
+
+    hoja2["B188"].value= Depreciacion/2
+    hoja2["C188"].value= "=B188"
+    hoja2["D188"].value= "=B188+C188"
+
+    hoja2["B189"].value= Seguros/2
+    hoja2["C189"].value= Seguros/2
+    hoja2["D189"].value= "=B189+C189"
+
+    hoja2["B190"].value= Mantenimiento
+    hoja2["C190"].value= Mantenimiento2
+    hoja2["D190"].value= "=B190+C190"
+
+    hoja2["B191"].value= Energeticos1
+    hoja2["C191"].value= Energeticos2
+    hoja2["D191"].value= "=B191+C191"
+
+    hoja2["B192"].value= Varios/2
+    hoja2["C192"].value= "=B192"
+    hoja2["D192"].value= Varios
+
+    hoja2["B193"].value= "=SUM(B188:B192)"
+    hoja2["C193"].value= "=SUM(C188:C192)"
+    hoja2["D193"].value= "=SUM(D188:D192)"
+
+    hoja2["D196"].value= "=D193"
+    hoja2["D197"].value= "=D181"
+    hoja2["D198"].value= "=D196/D197"
+
+
+
+
+    # Ejercicios Cedula 9
+
+    hoja2["B203"].value= depreciacion/2
+    hoja2["C203"].value= depreciacion/2
+    hoja2["D203"].value= "=B203+C203"
+
+    hoja2["B204"].value= SueldosYSalarios/2
+    hoja2["C204"].value= SueldosYSalarios/2
+    hoja2["D204"].value= "=B204+C204"
+
+    hoja2["B205"].value= "=B20*0.01"
+    hoja2["C205"].value= "=C20*0.01"
+    hoja2["D205"].value= "=B205+C205"
+
+    hoja2["B206"].value= Varios1
+    hoja2["C206"].value= Varios2
+    hoja2["D206"].value= "=B206+C206"
+
+    hoja2["B207"].value= InteresesPorPrestamo/2
+    hoja2["C207"].value= InteresesPorPrestamo/2
+    hoja2["D207"].value= "=B207+C207"
+
+    hoja2["B208"].value= "=SUM(B203:B207)"
+    hoja2["C208"].value= "=SUM(C203:C207)"
+    hoja2["D208"].value= "=SUM(D203:D207)"
+
+
+
+    #Ejercicios Cedula 10
+
+    #Producto 1
+    hoja2["B214"].value= "=C120"
+    hoja2["C214"].value= "=C223"
+    hoja2["D214"].value= "=B214*C214"
+
+    hoja2["B215"].value= "=C129"
+    hoja2["C215"].value= materia_prima_b[0]
+    hoja2["D215"].value= "=B215*C215"
+
+    hoja2["B216"].value= "=C138"
+    hoja2["C216"].value= materia_prima_c[0]
+    hoja2["D216"].value= "=B216*C216"
+
+    hoja2["B217"].value= "=C164"
+    hoja2["C217"].value= "=C162"
+    hoja2["D217"].value= "=B217*C217"
+
+    hoja2["B218"].value= "=D198"
+    hoja2["C218"].value= "=C217"
+    hoja2["D218"].value= "=B218*C218"
+
+    hoja2["D219"].value= "=SUM(D214:D218)"
+
+
+    #Producto 2
+    hoja2["B223"].value= "=B214"
+    hoja2["C223"].value= materia_prima_a[1]
+    hoja2["D223"].value= "=+B223*C223"
+
+    hoja2["B224"].value= "=B215"
+    hoja2["C224"].value= materia_prima_b[1]
+    hoja2["D224"].value= "=B224*C224"
+
+    hoja2["B225"].value= "=B216"
+    hoja2["C225"].value= materia_prima_c[1]
+    hoja2["D225"].value= "=B225*C225"
+
+    hoja2["B226"].value= "=C171"
+    hoja2["C226"].value= "=C169"
+    hoja2["D226"].value= "=B226*C226"
+
+    hoja2["B227"].value= "=B218"
+    hoja2["C227"].value= "=C226"
+    hoja2["D227"].value= "=B227*C227"
+
+    hoja2["D228"].value= "=SUM(D223:D227)"
+
+    #Producto 3
+
+    #Ejercicios Cedula 10
+
+    #Producto 1
+    hoja2["B214"].value= "=C120"
+    hoja2["C214"].value= "=C223"
+    hoja2["D214"].value= "=B214*C214"
+
+    hoja2["B215"].value= "=C129"
+    hoja2["C215"].value= MPB1
+    hoja2["D215"].value= "=B215*C215"
+
+    hoja2["B216"].value= "=C138"
+    hoja2["C216"].value= MPC1
+    hoja2["D216"].value= "=B216*C216"
+
+    hoja2["B217"].value= "=C164"
+    hoja2["C217"].value= "=C162"
+    hoja2["D217"].value= "=B217*C217"
+
+    hoja2["B218"].value= "=D198"
+    hoja2["C218"].value= "=C217"
+    hoja2["D218"].value= "=B218*C218"
+
+    hoja2["D219"].value= "=SUM(D214:D218)"
+
+
+    #Producto 2
+    hoja2["B223"].value= "=B214"
+    hoja2["C223"].value= MPA2
+    hoja2["D223"].value= "=B223*C223"
+
+    hoja2["B224"].value= "=B215"
+    hoja2["C224"].value= MPB2
+    hoja2["D224"].value= "=B224*C224"
+
+    hoja2["B225"].value= "=B216"
+    hoja2["C225"].value= MPC2
+    hoja2["D225"].value= "=B225*C225"
+
+    hoja2["B226"].value= "=C171"
+    hoja2["C226"].value= "=C169"
+    hoja2["D226"].value= "=B226*C226"
+
+    hoja2["B227"].value= "=B218"
+    hoja2["C227"].value= "=C226"
+    hoja2["D227"].value= "=B227*C227"
+
+    hoja2["D228"].value= "=SUM(D223:D227)"
+
+    #Producto 3
+
+    hoja2["B232"].value= "=B223"
+    hoja2["C232"].value= MPA3
+    hoja2["D232"].value= "=+B232*C232"
+
+    hoja2["B233"].value= "=B224"
+    hoja2["C233"].value= MPB3
+    hoja2["D233"].value= "=B233*C233"
+
+    hoja2["B234"].value= "=B225"
+    hoja2["C234"].value= MPC3
+    hoja2["D234"].value= "=B234*C234"
+
+    hoja2["B235"].value= "=B226"
+    hoja2["C235"].value= "=C176"
+    hoja2["D235"].value= "=B235*C235"
+
+    hoja2["B236"].value= "=B227"
+    hoja2["C236"].value= "=C235"
+    hoja2["D236"].value= "=B236*C236"
+
+    hoja2["D237"].value= "=SUM(D232:D236)"
+
+    #Cedula11
+    hoja2["B243"].value= "=C116"
+    hoja2["B244"].value= "=C125"
+    hoja2["B245"].value= "=C134"
+    
+    hoja2["C243"].value= "=B232"
+    hoja2["C244"].value= "=B233"
+    hoja2["C245"].value= "=B234"
+    
+    hoja2["D243"].value= "=B243*C243"
+    hoja2["D244"].value= "=B244*C244"
+    hoja2["D245"].value= "=B245*C245"
+    
+    hoja2["D246"].value= "=SUM(D243:D245)"
+    
+    hoja2["B250"].value= "=C41"
+    hoja2["B251"].value= "=C48"
+    hoja2["B252"].value= "=C55"
+    
+    hoja2["C250"].value= "=D219"
+    hoja2["C251"].value= "=D228"
+    hoja2["C252"].value= "=D237"
+    
+    hoja2["D250"].value= "=B250*C250"
+    hoja2["D251"].value= "=B251*C251"
+    hoja2["D252"].value= "=B252*C252"
+    hoja2["D253"].value= "=SUM(D250+D251+D252)"
+    
+    #cedula12     
+    hoja2["B261"].value=InMateriales
+    hoja2["B262"].value= "=D141"
+    hoja2["B263"].value= "=SUM(B261+B262)"
+    hoja2["B264"].value= "=D246"
+    hoja2["B265"].value= "=B263-B264"
+    hoja2["B266"].value="=D183"
+    hoja2["B267"].value="=D193"
+    hoja2["B268"].value="=SUM(B265:B267)"
+    hoja2["B269"].value=InProdTer
+    hoja2["B270"].value="=SUM(B268+B269)"
+    hoja2["B271"].value="=D253"
+    hoja2["B272"].value="=B270-B271"
+    
+    #cedula 13
+    np=float(input("¿De cuanto es el valor de el producto que se comprara?"))
+    hoja2["AB279"].value=np
+    hoja2["B279"].value="=D20"
+    hoja2["B280"].value="=B272"
+    hoja2["B281"].value="=B279-B280"
+    hoja2["B282"].value="=D208"
+    hoja2["B283"].value="=B281-B282"
+    hoja2["B284"].value="=B283*0.3"
+    hoja2["B285"].value="=B283*0.1"
+    hoja2["B286"].value="=B283-B284-B285"
+    hoja2["C292"].value= efectivo
+    hoja2["B294"].value="=B30"
+    hoja2["B295"].value="=B29"
+    hoja2["C296"].value="=SUM(B294:B295)"
+    hoja2["C297"].value="=SUM(C292+C296)"
+    
+    hoja2["B299"].value="=B152"
+    hoja2["B300"].value="=B151"
+    hoja2["B301"].value="=D183"
+    hoja2["B302"].value="=D193-D188"
+    hoja2["B303"].value="=D208-D203"
+    hoja2["B304"].value= "=AB279"
+    hoja2["B305"].value=ISR
+    hoja2["C307"].value="=SUM(B299:B305)"
+    hoja2["D308"].value="=(C297-C307)"
+    
+    
+    #Cedula 14?
+    #cedula ultima
+    hoja2["Z188"].value=depresiacionAcom
+    hoja2["B317"].value="=D308"
+    hoja2["B318"].value="=C33"
+    hoja2["B319"].value= deudores_diversos
+    hoja2["B320"].value="=D246"
+    hoja2["B321"].value= FuncionariosEmpleados
+    hoja2["B322"].value="=D253"
+    hoja2["B323"].value="=SUM(B317:B322)"
+    hoja2["B326"].value= Terreno
+    hoja2["B327"].value= plantaEquipo+np
+    hoja2["B328"].value="=Z188-D188-D203"
+    hoja2["B329"].value="=SUM(B326:B328)"
+    hoja2["B331"].value="=B323+B329"
+    hoja2["B335"].value="=C155"
+    hoja2["B336"].value=documentosxpagar
+    hoja2["B337"].value="=B284"
+    hoja2["B338"].value="=B285"
+    hoja2["B339"].value="=SUM(B335:B338)"
+    hoja2["B342"].value= prestamos_bancarios
+    hoja2["B343"].value="=B342"
+    hoja2["B345"].value="=B339+B343"
+    hoja2["B348"].value= capitalContri
+    hoja2["B349"].value= capitalGanado
+    hoja2["B350"].value="=B286"
+    hoja2["B351"].value="=SUM(B348:B350)"
+    hoja2["B353"].value="=B345+B351"
+    
+    libro.save("MiExcelDesdePython.xlsx")
+    
+    
+    
+else:
+    print("Su balance no cuadra, verifique las cantidades")
